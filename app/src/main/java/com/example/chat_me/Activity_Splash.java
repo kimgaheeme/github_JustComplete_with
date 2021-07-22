@@ -80,6 +80,7 @@ public class Activity_Splash extends AppCompatActivity {
             builder.create().show();
         }else{
             startActivity(new Intent(this,Login_Activity.class));
+            finish();
         }
     }
 }
