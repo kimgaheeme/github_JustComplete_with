@@ -51,6 +51,7 @@ public class Signup_Activity extends AppCompatActivity {
                                 //username만 데이터 베이스에 입력 이거 전에 model파일 생성 userModel 생성
                                 UserModel userModel = new UserModel();
                                 userModel.userName = name.getText().toString();
+                                userModel.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                                 //파이어 베이스에 입력
                                 String uid = task.getResult().getUser().getUid();
