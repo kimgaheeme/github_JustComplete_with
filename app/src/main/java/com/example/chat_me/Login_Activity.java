@@ -36,7 +36,7 @@ public class Login_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signOut();
+        firebaseAuth.signOut(); //기존에 로그인 된 사실 삭제
 
         id = (EditText)findViewById(R.id.login_edittext_id);
         password = (EditText)findViewById(R.id.login_edittext_password);
