@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chat_Me">
-        <activity android:name=".ReservationList_Activity"></activity>
+        <activity android:name=".ReservationList_Activity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Signup_Activity" />
         <activity android:name=".Login_Activity" />
