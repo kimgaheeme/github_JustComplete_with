@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.chat_me.model.ReservationModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +34,8 @@ public class ReservationList_Adapter extends RecyclerView.Adapter<ReservationLis
     //날짜 데이터 형식
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
     private  OnReservationListener mOnReservationListener;
+
+
 
     public ReservationList_Adapter(ArrayList<ReservationModel> customerArrayList, Context context, OnReservationListener onReservationListener)
     {

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.chat_me.model.ReservationModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +65,11 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
         toolbar_txt = (TextView)findViewById(R.id.toolbar_txt);
         toolbar_txt.setText("예약 상세");
 
+
+        //현재 유저가 속한 방만 얻기 위해
+        String uid;
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         recyclerView = findViewById(R.id.Reservation_List);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -72,9 +78,10 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
 
         database = FirebaseDatabase.getInstance();//파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("reservations");//DB테이블 연결
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("uid").equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 //파이어베이스 데이터 베이스의 데이터를 받아옴
                 reservationArrayList.clear();//기존 배열 초기화
                 ArrayList<ReservationModel> NotComReservation=new ArrayList<ReservationModel>();//동행 안끝난
