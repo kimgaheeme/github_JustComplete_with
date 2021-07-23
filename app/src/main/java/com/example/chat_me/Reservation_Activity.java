@@ -15,7 +15,6 @@ import org.w3c.dom.Text;
 
 public class Reservation_Activity extends AppCompatActivity {
 
-    private TextView toolbar_txt;
     private TextView name;
     private TextView age;
     private TextView car;
@@ -27,7 +26,6 @@ public class Reservation_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
-        toolbar_txt.setText("예약 상세");
         name = (TextView)findViewById(R.id.reservation_text_name);
         age = (TextView)findViewById(R.id.reservation_text_age);
         car = (TextView)findViewById(R.id.reservation_text_car);
@@ -40,7 +38,7 @@ public class Reservation_Activity extends AppCompatActivity {
                 chatModel.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 chatModel.accompany = accompany;
 
-                FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel);
+                //FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel);
             }
         });
 
