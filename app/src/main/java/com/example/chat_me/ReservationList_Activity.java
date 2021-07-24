@@ -44,6 +44,7 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
     public void OnReservationClick(int position) {
         reservationArrayList.get(position);
         Intent intent = new Intent(this, Reservation_Activity.class);
+        intent.putExtra("reservation",reservationArrayList.get(position));
         startActivity(intent);
     }
 
@@ -78,7 +79,7 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
 
         database = FirebaseDatabase.getInstance();//파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("reservations");//DB테이블 연결
-        databaseReference.orderByChild("uid").equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("patient").equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
