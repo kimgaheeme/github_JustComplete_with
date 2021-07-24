@@ -77,9 +77,10 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
         recyclerView.setLayoutManager(layoutManager);
         reservationArrayList = new ArrayList<>(); // Reservation객체를 담을 어레이 리스트
 
+        //.orderByChild("patient").equalTo(uid)
         database = FirebaseDatabase.getInstance();//파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("reservations");//DB테이블 연결
-        databaseReference.orderByChild("patient").equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -90,9 +91,12 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
 
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {//반복문으로 데이터 List추출
+
                     ReservationModel customer = snapshot.getValue(ReservationModel.class);//만들어뒀던 Customer객체에 데이터를 담는다
-                    if(customer.getAccompanySitu().equals("동행완료")) ComReservation.add(customer);//만약 동행이 끝났다면 ComReservation에 더하고
-                    else NotComReservation.add(customer);//동행이 안끝났으면 NotComReservation
+                    if(uid.equalsIgnoreCase(customer.getPatient()) || uid.equalsIgnoreCase(customer.getAccompany())){
+                        if(customer.getAccompanySitu().equals("동행완료")) ComReservation.add(customer);//만약 동행이 끝났다면 ComReservation에 더하고
+                        else NotComReservation.add(customer);//동행이 안끝났으면 NotComReservation
+                    }
                 }
                 Collections.sort(NotComReservation,new Ascending());
                 Collections.sort(ComReservation, new Ascending());

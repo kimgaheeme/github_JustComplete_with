@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class ReservationModel implements Parcelable {
 
-    public String uid;
+    public String patient;
     public String accompany;
     public String accompanySitu;
     public String hospital;
@@ -15,7 +15,7 @@ public class ReservationModel implements Parcelable {
     public ReservationModel(){}
 
     protected ReservationModel(Parcel in) {
-        uid = in.readString();
+        patient = in.readString();
         accompany = in.readString();
         accompanySitu = in.readString();
         hospital = in.readString();
@@ -34,12 +34,12 @@ public class ReservationModel implements Parcelable {
         }
     };
 
-    public String getUid() {
-        return uid;
+    public String getPatient() {
+        return patient;
     }
 
-    public void setUid(String accompanySitu) {
-        this.uid = uid;
+    public void setPatient(String patient) {
+        this.patient = patient;
     }
 
     public String getAccompany() {
@@ -89,7 +89,7 @@ public class ReservationModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(uid);
+        dest.writeString(patient);
         dest.writeString(accompany);
         dest.writeString(accompanySitu);
         dest.writeString(hospital);
