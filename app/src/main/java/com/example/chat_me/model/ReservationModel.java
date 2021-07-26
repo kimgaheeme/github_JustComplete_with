@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 public class ReservationModel implements Parcelable {
 
+    public String protector;
     public String patient;
     public String accompany;
     public String accompanySitu;
@@ -15,6 +16,7 @@ public class ReservationModel implements Parcelable {
     public ReservationModel(){}
 
     protected ReservationModel(Parcel in) {
+        protector = in.readString();
         patient = in.readString();
         accompany = in.readString();
         accompanySitu = in.readString();
@@ -33,6 +35,14 @@ public class ReservationModel implements Parcelable {
             return new ReservationModel[size];
         }
     };
+
+    public String getProtector() {
+        return protector;
+    }
+
+    public void setProtector(String protector) {
+        this.protector = protector;
+    }
 
     public String getPatient() {
         return patient;
@@ -89,6 +99,7 @@ public class ReservationModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(protector);
         dest.writeString(patient);
         dest.writeString(accompany);
         dest.writeString(accompanySitu);

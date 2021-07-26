@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chat_me.model.ReservationModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +47,7 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
         Intent intent = new Intent(this, Reservation_Activity.class);
         intent.putExtra("reservation",reservationArrayList.get(position));
         startActivity(intent);
+
     }
 
     class Ascending implements Comparator<ReservationModel>{
@@ -93,7 +95,7 @@ public class ReservationList_Activity extends AppCompatActivity implements Reser
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {//반복문으로 데이터 List추출
 
                     ReservationModel customer = snapshot.getValue(ReservationModel.class);//만들어뒀던 Customer객체에 데이터를 담는다
-                    if(uid.equalsIgnoreCase(customer.getPatient()) || uid.equalsIgnoreCase(customer.getAccompany())){
+                    if(uid.equalsIgnoreCase(customer.getPatient()) || uid.equalsIgnoreCase(customer.getProtector())){
                         if(customer.getAccompanySitu().equals("동행완료")) ComReservation.add(customer);//만약 동행이 끝났다면 ComReservation에 더하고
                         else NotComReservation.add(customer);//동행이 안끝났으면 NotComReservation
                     }
