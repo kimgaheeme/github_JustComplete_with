@@ -37,6 +37,7 @@ public class PlusProtector_Activity extends AppCompatActivity {
     private  ImageView userImage;
     private Button plus;
     private CardView findcard;
+    private TextView notfound;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -49,7 +50,7 @@ public class PlusProtector_Activity extends AppCompatActivity {
 
         //toolbar 글자
         toolbar_txt = (TextView)findViewById(R.id.toolbar_txt);
-        toolbar_txt.setText("보호자 추가");
+        toolbar_txt.setText("보호자/환자 추가");
 
         //intent로 해당 예약 정보 불러오기
         reservation = getIntent().getParcelableExtra("reservation");
@@ -61,12 +62,14 @@ public class PlusProtector_Activity extends AppCompatActivity {
         userImage = (ImageView)findViewById(R.id.plus_protector_image_user);
         plus = (Button)findViewById(R.id.plus_protector_button_plus);
         findcard = (CardView)findViewById(R.id.plus_protector_card_user);
+        notfound = (TextView)findViewById(R.id.plus_protector_text_notfound);
 
-        findcard.setVisibility(View.INVISIBLE);
+
 
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                findcard.setVisibility(View.INVISIBLE);
                 databaseReference = FirebaseDatabase.getInstance().getReference("users");//파이어베이스 데이터 베이스 연동
                 databaseReference.orderByChild("userName").equalTo(id.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -77,9 +80,8 @@ public class PlusProtector_Activity extends AppCompatActivity {
                                name.setText(user.getUserName());
                                findcard.setVisibility(View.VISIBLE);
                            }
-
                         }else {
-                            Toast.makeText(PlusProtector_Activity.this,"데이터 없음",Toast.LENGTH_SHORT).show();
+                            notfound.setVisibility(View.VISIBLE);
                         }
                     }
 

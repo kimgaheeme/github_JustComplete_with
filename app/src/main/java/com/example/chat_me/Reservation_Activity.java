@@ -26,7 +26,6 @@ public class Reservation_Activity extends AppCompatActivity {
 
     private Button gps;
     private Button protector;
-    private Button patience;
     private String accompany;
     private ReservationModel reservationModel = null;
     @Override
@@ -47,7 +46,6 @@ public class Reservation_Activity extends AppCompatActivity {
 
         gps = (Button)findViewById(R.id.reservation_button_gps);
         protector = (Button)findViewById(R.id.reservation_button_protector);
-        patience = (Button)findViewById(R.id.reservation_button_patience);
         //예시name.setText(reservationModel.getHospital());
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,5 +66,7 @@ public class Reservation_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }
